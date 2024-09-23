@@ -13,8 +13,10 @@ function App() {
           <h2>Servicios</h2>
         </div>
         <div>
+          <article>
           <img src="" alt="" />
           <p></p>
+          </article>
         </div>
       </div>
     </>
