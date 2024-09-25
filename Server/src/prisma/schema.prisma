@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CATEGORIAS_PRODUCTOS {
+  Id_categoria             Int                        @id @default(autoincrement())
+  Nombre                   String?
+  Descripcion              String?
+  SUB_CATEGORIAS_PRODUCTOS SUB_CATEGORIAS_PRODUCTOS[]
+}
+
+model CONTACTO {
+  Id_contacto Int     @id @default(autoincrement())
+  Tipo        String?
+  Informacion String?
+}
+
+model ENCUESTA {
+  Id_encuesta Int     @id @default(autoincrement())
+  Pregunta    String?
+  Respuesta   String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model INICIO {
+  Text    String?
+  Imagen1 String?
+  Imagen2 String?
+  Imagen3 String?
+  Imagen4 String?
+
+  @@ignore
+}
+
+model PRODUCTOS {
+  id_producto              Int                      @id @default(autoincrement())
+  Nombre                   String?
+  Descripcion              String?
+  Id_subcategorias         Int                      @default(autoincrement())
+  SUB_CATEGORIAS_PRODUCTOS SUB_CATEGORIAS_PRODUCTOS @relation(fields: [Id_subcategorias], references: [Id_subcategoria], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model SERVICIOS {
+  Id_contaco      Int     @id @default(autoincrement())
+  Nombre_servicio String?
+  Descripcion     String?
+  Imagen1         String?
+  Imagen2         String?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model SOBRE_NOSOTROS {
+  Mision   String?
+  Vision   String?
+  Historia String?
+  Imagen1  String?
+
+  @@ignore
+}
+
+model SUB_CATEGORIAS_PRODUCTOS {
+  Id_subcategoria      Int                  @id @default(autoincrement())
+  Id_categoria         Int                  @default(autoincrement())
+  Nombre               String?
+  Descripcion          String?
+  PRODUCTOS            PRODUCTOS[]
+  CATEGORIAS_PRODUCTOS CATEGORIAS_PRODUCTOS @relation(fields: [Id_categoria], references: [Id_categoria], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model USUARIOS {
+  Id_user  Int     @id @default(autoincrement())
+  Username String?
+  Password String?
+}
