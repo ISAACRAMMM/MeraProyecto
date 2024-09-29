@@ -6,7 +6,7 @@ import path from "path";
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
 
-import * as query from './querys.js'
+import * as queryGet from './querys/querysGet.js'
 
 
 
@@ -27,7 +27,7 @@ res.json(data)
 // 
 router.get('/productos', (req, res) => {
     try {
-        const productos= query.getProdutos()
+        const productos= queryGet.getProdutos()
 
         res.json(productos)
 
@@ -38,7 +38,14 @@ router.get('/productos', (req, res) => {
 
 //
 router.get('/nosotros', (req, res) =>{
+    try {
+        const nosotros= queryGet.getNosotros()
 
+        res.json(nosotros)
+
+    } catch (error) {
+        console.error(error)
+    }
 })
 
 //

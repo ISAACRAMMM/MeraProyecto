@@ -1,22 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+//import './App.css'
+
+import { Menu } from './components/gestor/lateralMenu'
+import { PanelProductos } from './components/gestor/panelTablaProductos'
+
+import { API_HOST } from './config'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <div>
-        <div>
-          <h2>Servicios</h2>
+      <div className='container row'>
+        <div className='col'>
+          <Menu></Menu>
+          
         </div>
-        <div>
-          <article>
-          <img src="" alt="" />
-          <p></p>
-          </article>
+        <div className='col'>
+        
+        <PanelProductos/>
         </div>
       </div>
     </>
