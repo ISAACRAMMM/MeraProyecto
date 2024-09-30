@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "prisma": "^5.19.1"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   }
 }

@@ -3,10 +3,22 @@ const prisma = new PrismaClient();
 
 
 export const newEncuesta = async (respuestas) => {
-    const use = await prisma.user.create({
+  try {
+    const encuesta = await prisma.ENCUESTA.create({
         data: {
-          email: 'elsa@prisma.io',
-          name: 'Elsa Prisma',
+          Pregunta: respuestas.Pregunta,
+          Respuesta: respuestas.Respuesta
         },
       })
+    } catch(e) {
+      console.error(e);
+      process.exit(1);
+    }
+      finally {
+      await prisma.$disconnect();
+    }
+}
+
+export const newContacto = async (contacto) => {
+
 }
