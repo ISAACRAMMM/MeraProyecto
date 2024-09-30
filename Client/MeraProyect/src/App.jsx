@@ -6,6 +6,7 @@ import { Menu } from './components/gestor/lateralMenu'
 import { PanelProductos } from './components/gestor/panelTablaProductos'
 
 import { API_HOST } from './config'
+import { UploadImg } from './components/gestor/uploadImg'
 
 function App() {
 
@@ -19,7 +20,10 @@ function App() {
         </div>
         <div className='col'>
         
-        <PanelProductos/>
+        
+        </div>
+        <div className='col'>
+          <UploadImg></UploadImg>
         </div>
       </div>
     </>

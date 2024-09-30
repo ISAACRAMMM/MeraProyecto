@@ -3,6 +3,7 @@ import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
 import process from 'process';
 import router from './routers/router.js'; 
+import routerUpload from './routers/upload.js';
 
 const app = express()
 
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 
 
 app.use(router);
-
+app.use(routerUpload);
 
 
 app.use(express.static(join(__dirname, 'public')));
