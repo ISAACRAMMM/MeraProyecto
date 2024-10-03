@@ -1,27 +1,35 @@
 import { fetchProductos } from "../../fetchData"
-import {API_HOST} from "../../config"
-
-
 export function PanelProductos() {
-    const { data, loading, error} = fetchProductos(`${API_HOST}/productos`)
+    const { data, loading, error } = fetchProductos('http://192.168.1.81:3300/productos');
+
     return (
         <div>
-            {error && <li> Error:{error}</li>}
-            {loading && <li> Loading:{loading}</li>}
-            {data?.map()}
+            <div>
+                <button>Agregar</button>
+                <button>Eliminar</button>
+            </div>
+
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th> </th>
+                        <th>Nombre</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> </td>
-                    </tr>
+                    {error && <tr><td>Error: {error.message}</td></tr>}
+                    {loading && <tr><td>Cargando...</td></tr>}
+                    {data && data.length > 0 ? (
+                        data.map((producto) => (
+                            <tr key={producto.id_producto}>
+                                <td>{producto.nombre}</td>
+                            
+                            </tr>
+                        ))
+                    ) : (
+                        !loading && <tr><td>No hay productos disponibles.</td></tr>
+                    )}
                 </tbody>
             </table>
-
         </div>
-    )
+    );
 }

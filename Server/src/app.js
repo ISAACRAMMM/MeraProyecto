@@ -26,10 +26,10 @@ app.use(routerUpload);
 
 
 app.use(cors({
-    origin: 'http://localhost:3000',  // Cambia esto por la URL de tu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Métodos que deseas permitir
-    allowedHeaders: ['Content-Type', 'Authorization'],  // Cabeceras permitidas
-  }));
+  origin: 'http://localhost:3000', // Permite el frontend desde esta URL
+  methods: 'GET,POST',             // Métodos permitidos
+  credentials: true                // Permite el uso de cookies o autenticación
+}));
 
 app.use(express.static(join(__dirname, 'public')));
 app.use(express.static(join(__dirname, 'uploads')));

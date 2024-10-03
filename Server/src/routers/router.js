@@ -25,10 +25,10 @@ res.json(data)
 })
 
 // 
-router.get('/productos', (req, res) => {
+router.get('/productos', async (req, res) => {
     try {
-        const productos= queryGet.getProdutos()
-
+       const productos  = await queryGet.getProdutos()
+        
         res.json(productos)
 
     } catch (error) {

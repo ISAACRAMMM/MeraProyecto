@@ -1,4 +1,4 @@
-import { useState, useEfect } from "react";
+import { useState, useEffect } from "react";
 
 
 export function fetchProductos(url){
@@ -6,7 +6,7 @@ export function fetchProductos(url){
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     
-    useEfect(()=>{
+    useEffect(() => {
         const abortController= new AbortController()
 
         setLoading(true)
@@ -17,6 +17,6 @@ export function fetchProductos(url){
         .finally(()=>setLoading(false))
 
         return () => abortController.abort()
-    }, [])
-    return {data, loading}
+    },[url])
+    return {data, loading,error}
 }

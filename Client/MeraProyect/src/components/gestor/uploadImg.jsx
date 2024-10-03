@@ -1,4 +1,4 @@
-import { API_HOST } from '../../config.js';
+
 import { useState } from 'react';
 
 export function UploadImg() {
