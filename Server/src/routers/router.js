@@ -6,6 +6,8 @@ import path from "path";
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
 
+import cors from 'cors'; 
+
 import * as queryGet from './querys/querysGet.js'
 
 
@@ -19,6 +21,13 @@ const router = Router();
 
 
 
+router.use(cors({
+    origin: 'http://localhost:3000' // Permite solicitudes desde estos orígenes
+  }));
+
+
+  
+
 router.get('/', (req, res) => {
     const data = { message: 'Hola desde el servidor!' };
 res.json(data)
@@ -28,7 +37,6 @@ res.json(data)
 router.get('/productos', async (req, res) => {
     try {
        const productos  = await queryGet.getProdutos()
-        
         res.json(productos)
 
     } catch (error) {

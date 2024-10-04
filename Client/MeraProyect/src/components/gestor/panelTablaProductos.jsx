@@ -1,6 +1,8 @@
-import { fetchProductos } from "../../fetchData"
+import { FetchProductos } from "../../fetchData"
+import {API_HOST} from '../../config'
 export function PanelProductos() {
-    const { data, loading, error } = fetchProductos('http://192.168.1.81:3300/productos');
+ //   const { data, loading, error } = fetchProductos(`${API_HOST}/productos`);
+    const { data, loading, error } = FetchProductos('http://192.168.1.82:3300/productos');
 
     return (
         <div>
@@ -19,9 +21,9 @@ export function PanelProductos() {
                     {error && <tr><td>Error: {error.message}</td></tr>}
                     {loading && <tr><td>Cargando...</td></tr>}
                     {data && data.length > 0 ? (
-                        data.map((producto) => (
-                            <tr key={producto.id_producto}>
-                                <td>{producto.nombre}</td>
+                        data.map((PRODUCTOS) => (
+                            <tr key={PRODUCTOS.id_producto}>
+                                <td>{PRODUCTOS.Nombre}</td>
                             
                             </tr>
                         ))

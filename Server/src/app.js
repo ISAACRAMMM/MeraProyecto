@@ -4,7 +4,7 @@ import {fileURLToPath} from 'url';
 import process from 'process';
 import router from './routers/router.js'; 
 import routerUpload from './routers/upload.js';
-import cors from 'cors'; 
+
 
 const app = express()
 
@@ -25,11 +25,7 @@ app.use(router);
 app.use(routerUpload);
 
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Permite el frontend desde esta URL
-  methods: 'GET,POST',             // Métodos permitidos
-  credentials: true                // Permite el uso de cookies o autenticación
-}));
+
 
 app.use(express.static(join(__dirname, 'public')));
 app.use(express.static(join(__dirname, 'uploads')));
