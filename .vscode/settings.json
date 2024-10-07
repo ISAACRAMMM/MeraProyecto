@@ -18,5 +18,6 @@
         "titleBar.inactiveBackground": "#ff573399",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "ff5733"
+    "peacock.color": "ff5733",
+    "thunder-client.multiRootWorkspaceName": "MeraProyecto"
 }

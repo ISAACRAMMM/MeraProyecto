@@ -9,6 +9,7 @@ import {fileURLToPath} from 'url';
 import cors from 'cors'; 
 
 import * as queryGet from './querys/querysGet.js'
+import * as queryPost from './querys/querysPost.js'
 
 
 
@@ -18,7 +19,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 const router = Router();
-
 
 
 router.use(cors({
@@ -34,7 +34,7 @@ res.json(data)
 })
 
 // 
-router.get('/productos', async (req, res) => {
+router.get('/get/productos', async (req, res) => {
     try {
        const productos  = await queryGet.getProdutos()
         res.json(productos)
@@ -44,10 +44,55 @@ router.get('/productos', async (req, res) => {
     }
 })
 
-//
-router.get('/nosotros', (req, res) =>{
+router.get(`/get/producto/:id`, async (req, res) => {
     try {
-        const nosotros= queryGet.getNosotros()
+        const id = parseInt(req.params.id, 10);
+        const productos  = await queryGet.getProduto(id)
+        res.json(productos)
+
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+router.post('/new/producto', async (req, res) => {
+    const { nombre, descripcion, subcategoria } = req.body;
+
+    
+    if (!nombre || !descripcion || !subcategoria) {
+        return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+
+  
+    console.log('Producto recibido:', { nombre, descripcion, subcategoria });
+
+    const producto= await queryPost.newProducto(nombre, descripcion, subcategoria)
+    
+    if(producto){
+        res.status(201).json({
+            message: 'Producto creado con éxito',
+            producto: { nombre, descripcion, subcategoria }
+        });
+    }
+   
+})
+
+
+//
+router.get('/get/subcategorias', async (req, res) => {
+    try {
+       const productos  = await queryGet.getSubcategorias()
+        res.json(productos)
+
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//
+router.get('/nosotros', async (req, res) =>{
+    try {
+        const nosotros= await queryGet.getNosotros()
 
         res.json(nosotros)
 

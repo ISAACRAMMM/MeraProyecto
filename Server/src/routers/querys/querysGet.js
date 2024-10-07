@@ -63,8 +63,20 @@ export const getNosotros = async () => {
 export const getProdutos = async () => {
     try {
         const productos = await prisma.PRODUCTOS.findMany()
-        console.log('obtener')
-        console.log(productos)
+        return productos;
+    } catch (error) {
+        console.error(error);
+    } finally{
+        await prisma.$disconnect();
+    }
+}
+
+export const getProduto = async (id) => {
+    try {    
+       
+        const productos = await prisma.PRODUCTOS.findUnique({
+            where:{ id_producto: id }
+        })
         return productos;
     } catch (error) {
         console.error(error);
@@ -75,7 +87,7 @@ export const getProdutos = async () => {
 
 export const getSubcategorias = async () => {
     try {
-        const subcategorias = await prisma.sUB_CATEGORIAS_PRODUCTOS.findMany()
+        const subcategorias = await prisma.SUB_CATEGORIAS_PRODUCTOS.findMany()
         return subcategorias;
     } catch (error) {
         console.error(error);
