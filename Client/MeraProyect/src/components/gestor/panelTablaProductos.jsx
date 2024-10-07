@@ -115,6 +115,7 @@ function Agregar() {
                                                 onChange={(e) => setSubcategoria(e.target.value)} // Captura el valor seleccionado
                                                 required
                                             >
+                                                <option value=""></option>
                                                 {error && <option> Error: {error.message} </option>}
                                                 {loading && <option>Cargando...</option>}
                                                 {data && data.length > 0 ? (

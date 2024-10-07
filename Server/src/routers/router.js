@@ -58,6 +58,7 @@ router.get(`/get/producto/:id`, async (req, res) => {
 router.post('/new/producto', async (req, res) => {
     const { nombre, descripcion, subcategoria } = req.body;
 
+    console.log(nombre, descripcion, subcategoria)
     
     if (!nombre || !descripcion || !subcategoria) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
