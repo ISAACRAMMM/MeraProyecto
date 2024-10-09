@@ -1,8 +1,8 @@
 import { FetchData, FetchDataPost } from "../../fetchData"
-import { API_HOST } from '../../config'
+import { API_HOST ,Host } from '../../config'
 import { useState } from "react";
 
-const Host = 'http://192.168.1.81:3300'
+import { Toaster, toast } from 'sonner'
 
 
 
@@ -28,10 +28,11 @@ function Agregar() {
         const producto = {
             nombre,
             descripcion,
-            subcategoria
+            subcategoria :parseInt(subcategoria, 10)
         };
 
         try {
+           
             const response = await FetchDataPost(`${Host}/new/producto`, {
                 method: 'POST',
                 headers: {
@@ -40,12 +41,16 @@ function Agregar() {
                 body: JSON.stringify(producto),
             });
 
-            if (!response.ok) {
-                throw new Error('Error en la solicitud');
+            if (response.status === 200 ) {
+                toast.error('Error en la solicitud')
+                return
+                
             }
 
-            const data = await response.json();
-            console.log('Producto creado:', data);
+           // const data = await response.json();
+            toast.success('Producto creado')
+            setShowModal(false)
+            
         } catch (error) {
             console.error('Error:', error);
         }
@@ -280,6 +285,7 @@ export function PanelProductos() {
         <div className=" ms-5 mt-3 pt-5  me-5">
 
             <Agregar />
+            <Toaster richColors/>
 
             <div className=" mt-5 table-responsive">
                 <table className="table table-striped ">

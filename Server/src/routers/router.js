@@ -58,24 +58,28 @@ router.get(`/get/producto/:id`, async (req, res) => {
 router.post('/new/producto', async (req, res) => {
     const { nombre, descripcion, subcategoria } = req.body;
 
-    console.log(nombre, descripcion, subcategoria)
-    
     if (!nombre || !descripcion || !subcategoria) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
-  
-    console.log('Producto recibido:', { nombre, descripcion, subcategoria });
-
-    const producto= await queryPost.newProducto(nombre, descripcion, subcategoria)
-    
-    if(producto){
-        res.status(201).json({
+    try {
+        const producto = await queryPost.newProducto(nombre, descripcion, subcategoria);
+        return res.status(201).json({
             message: 'Producto creado con éxito',
             producto: { nombre, descripcion, subcategoria }
         });
+    } catch (error) {
+        console.error('Error al crear producto:', error);
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
-   
+})
+
+router.put('update/producto/:id', async (req, res) => {
+
+})
+
+router.delete('delete/producto/:id', async (req, res) => {
+
 })
 
 

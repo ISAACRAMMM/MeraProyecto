@@ -34,7 +34,8 @@ export const newProducto = async (nombre, descripcion, categoria) => {
       }
     })
 
-    return true
+    
+
   }catch(e) {
     console.error(e);
     process.exit(1);

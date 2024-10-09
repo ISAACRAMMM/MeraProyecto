@@ -10,6 +10,9 @@ import { UploadImg } from './components/gestor/uploadImg'
 import { Route, Routes, Link } from 'react-router-dom'
 import TopBar from './components/gestor/topBar'
 
+
+
+
 function App() {
 
 //  <Route path='/admin/' element={}/>

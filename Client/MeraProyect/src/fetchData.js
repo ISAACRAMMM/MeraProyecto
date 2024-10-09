@@ -30,9 +30,11 @@ export function FetchData(url) {
 
 
 export async function FetchDataPost(url, options = {}) {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-        throw new Error('Error en la solicitud');
+    try {
+        const response = await fetch(url, options);
+        return response;  // Asegúrate de devolver la respuesta aquí
+    } catch (error) {
+        console.error('Error en FetchDataPost:', error);
+        throw error;
     }
-    return await response.json();
 }
